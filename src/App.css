@@ -1,0 +1,82 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+} */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* .bg-register {
+  background-image: url("https://scontent.fmnl8-3.fna.fbcdn.net/v/t1.15752-9/462579479_599382975889644_315746297489666491_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeE4Jy67u-tKi1j4YGfysWF5wg0C9S5oRUzCDQL1LmhFTB0kC8_UqVbStCkREza6lsxv6UbQ4o7gj5VffJKiV6tI&_nc_ohc=q89MBM0SYP4Q7kNvgHPbSVF&_nc_zt=23&_nc_ht=scontent.fmnl8-3.fna&oh=03_Q7cD1QHMR-atNTIZKXnb3qCYEZiP7IVQfsemLck2UXOl-v7lmA&oe=6775F172");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+} */
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    "bg-mockup-register  form-register"
+    "bg-mockup-register  form-register";
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.bg-mockup-register {
+  grid-area: bg-mockup-register;
+}
+.form-register {
+  grid-area: form-register;
+}
+@media (max-width: 768px) {
+  .bg-mockup-register {
+    display: none;
+  }
+  .grid-container {
+    display: block;
+    overflow: auto;
+  }
+
+  img {
+    display: none;
+  }
+}

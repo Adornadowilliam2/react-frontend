@@ -1,0 +1,94 @@
+import {
+  Box,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { index } from "../../api/booking";
+import { useCookies } from "react-cookie";
+import { toast } from "react-toastify";
+import { retrieveUser } from "../../api/user";
+import { retrieveRoom } from "../../api/room";
+
+export default function Recent() {
+  const [cookies, setCookie, removeCookie] = useCookies(["AUTH_TOKEN"]);
+  const [rows, setRows] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [rooms, setRooms] = useState([]);
+
+  const retrieve = () => {
+    index(cookies.AUTH_TOKEN).then((res) => {
+      if (res?.ok) {
+        setRows(res.data);
+      }
+    });
+    retrieveUser(cookies.AUTH_TOKEN).then((res) => {
+      if (res?.ok) {
+        setUsers(res.data);
+      }
+    });
+    retrieveRoom(cookies.AUTH_TOKEN).then((res) => {
+      if (res?.ok) {
+        setRooms(res.data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    retrieve();
+  }, []);
+
+  return (
+    <Box
+      sx={{
+        background: "white",
+        boxShadow: "0 0 5px #000",
+        mt: 2,
+        height: "100%",
+
+        p: 1,
+      }}
+    >
+      <Typography>Recent</Typography>
+      <TableContainer>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell>Id</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Room name</TableCell>
+              <TableCell>Start time</TableCell>
+              <TableCell>Subject</TableCell>
+              <TableCell>End time</TableCell>
+              <TableCell>Created at</TableCell>
+              <TableCell>Updated at</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.id}>
+                <TableCell>{row.id}</TableCell>
+                <TableCell>
+                  {users.filter((u) => u.id == row.user_id)[0].name}
+                </TableCell>
+                <TableCell>
+                  {rooms.filter((r) => r.id == row.room_id)[0].room_name}
+                </TableCell>
+                <TableCell>{row.start_time}</TableCell>
+                <TableCell>{row.subject}</TableCell>
+                <TableCell>{row.end_time}</TableCell>
+                <TableCell>{row.created_at}</TableCell>
+                <TableCell>{row.updated_at}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
+  );
+}
