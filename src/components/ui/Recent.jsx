@@ -15,34 +15,7 @@ import { toast } from "react-toastify";
 import { retrieveUser } from "../../api/user";
 import { retrieveRoom } from "../../api/room";
 
-export default function Recent() {
-  const [cookies, setCookie, removeCookie] = useCookies(["AUTH_TOKEN"]);
-  const [rows, setRows] = useState([]);
-  const [users, setUsers] = useState([]);
-  const [rooms, setRooms] = useState([]);
-
-  const retrieve = () => {
-    index(cookies.AUTH_TOKEN).then((res) => {
-      if (res?.ok) {
-        setRows(res.data);
-      }
-    });
-    retrieveUser(cookies.AUTH_TOKEN).then((res) => {
-      if (res?.ok) {
-        setUsers(res.data);
-      }
-    });
-    retrieveRoom(cookies.AUTH_TOKEN).then((res) => {
-      if (res?.ok) {
-        setRooms(res.data);
-      }
-    });
-  };
-
-  useEffect(() => {
-    retrieve();
-  }, []);
-
+export default function Recent({ rows, users, rooms }) {
   return (
     <Box
       sx={{

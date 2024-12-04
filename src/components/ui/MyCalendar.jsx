@@ -25,9 +25,7 @@ export default function MyCalendar() {
     setIsDialogOpen(true);
   };
 
-  const handleDialogClose = () => {
-    setIsDialogOpen(false);
-  };
+
 
   return (
     <Box>
@@ -36,7 +34,7 @@ export default function MyCalendar() {
         value={date}
         onClickDay={handleDateClick} // Adds the date click event handler
       />
-      <Dialog open={isDialogOpen} onClose={handleDialogClose}>
+      <Dialog open={!!isDialogOpen}>
         <DialogTitle>Selected Date</DialogTitle>
         <DialogContent>
           <Typography variant="h6">
@@ -44,7 +42,7 @@ export default function MyCalendar() {
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleDialogClose} variant="contained">
+          <Button onClick={() => setIsDialogOpen(false)} variant="contained">
             Close
           </Button>
         </DialogActions>

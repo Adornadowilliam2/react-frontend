@@ -24,7 +24,7 @@ import { useCookies } from "react-cookie";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 
-export default function Navbar({ user }) {
+export default function Navbar({ user, setRoomCard, roomcard }) {
   const [dialog, setDialog] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies(["AUTH_TOKEN"]);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -93,7 +93,12 @@ export default function Navbar({ user }) {
             <ListItem sx={{ cursor: "pointer" }}>
               <ListItemText primary="Home" />
             </ListItem>
-            <ListItem sx={{ cursor: "pointer" }}>
+            <ListItem
+              sx={{ cursor: "pointer" }}
+              onClick={() => {
+                roomcard ? setRoomCard(false) : setRoomCard(true);
+              }}
+            >
               <ListItemText primary="Rooms" />
             </ListItem>
             <ListItem sx={{ cursor: "pointer" }}>
