@@ -6,6 +6,7 @@ import Navbar from "../components/ui/Navbar";
 import { Box } from "@mui/material";
 import Recent from "../components/ui/Recent";
 import Login from "./Login";
+import MyCalendar from "../components/ui/MyCalendar";
 
 function Home() {
   const user = useSelector((state) => state.auth.user);
@@ -19,9 +20,11 @@ function Home() {
               background: "aliceblue",
               display: "flex",
               alignItems: "center",
+              gap: 2,
             }}
           >
             <Recent />
+            <MyCalendar />
           </Box>
         </Box>
       ) : (
