@@ -7,6 +7,9 @@ import Login from "./pages/Login";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
 
+import FullScreenDialog from "./pages/FullScreenDialog";
+import ModelViewer from "./pages/ModelViewer";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -21,6 +24,14 @@ function App() {
       path: "/login",
       element: <Login />,
     },
+    {
+      path: "/alien",
+      element: <FullScreenDialog/>,
+    },
+    {
+      path:"/modelviewer",
+      element:<ModelViewer/>
+    }
   ]);
 
   return (
