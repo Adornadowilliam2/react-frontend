@@ -65,6 +65,10 @@ export default function Login() {
         >
           <CloseIcon />
         </IconButton>
+        <img
+          src="https://github.com/Adornadowilliam2/images/blob/main/room%20icon.jpg?raw=true"
+          style={{ width: "100px", margin: "auto", display: "block" }}
+        />
         <Typography
           variant="h1"
           sx={{
